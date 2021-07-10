@@ -12,8 +12,19 @@ body {
   font-size: 14px;
   line-height: 18px;
 }
-
+*{
+  box-sizing: content-box;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
 }
