@@ -1,0 +1,1 @@
+export const onlyLetters = (string,isLower = true) => string.replace(/[^a-zA-Z]+/g, '').toLowerCase(); 

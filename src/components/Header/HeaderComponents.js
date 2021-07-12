@@ -25,7 +25,7 @@ export const HeaderWrapper = styled.div`
     }
 
     @media (min-width: ${screens.lg}) { 
-        padding: 35px 0px;
+        padding: 35px 0px 60px 0px;
     }
 `
 
@@ -84,6 +84,7 @@ export const SearchFormFullHeigth = styled.div`
     background: rgba(79, 79, 79, 0.4);
     position: absolute;
     inset: 0;
+    display: ${(props) => props.isVisible ? 'block':'none'};
 `
 
 export const SearchFormContainer = styled.div`
@@ -109,6 +110,7 @@ export const InputWrapper = styled.div`
     flex: 1 1 33.333333%;
     display: flex;
     flex-direction: column;
+    gap:4px;
     justify-content: center;
     padding: 12px 30px;
     border: 1px solid #F2F2F2;
@@ -169,16 +171,23 @@ FormRow.defaultProps={
 }
 
 export const LocationOptionList = styled.div`
-    flex: 1 1 33.333333%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: 45px 30px;
+    gap:35px;
 `
 
 export const LocationOption = styled.div`
     color: #4F4F4F;
+    display: flex;
+    align-items: center;
+    gap:5px;
+    cursor: pointer;
 `
 
 export const GuestCounterWrapper = styled.div`
-    flex: 1 1 33.333333%;
+    flex: 1;
     padding: 45px 30px;
     padding-bottom: 70px;
     display: flex;
@@ -212,7 +221,7 @@ export const GuestCounterButton = styled.button`
     cursor: pointer;
 `
 export const EmptyColumn = styled.div`
-    flex: 1 1 33.333333%;
+    flex: 1;
     display: block;
     padding: 45px 30px;
 `
