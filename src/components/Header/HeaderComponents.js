@@ -60,6 +60,7 @@ export const LocationText = styled.div`
     align-items: center;
     justify-content: center;
     width: 140px;
+    text-overflow: ellipsis;
     border-right: 1px solid #F2F2F2;
 `
 export const GuestsText = styled.div`
@@ -87,7 +88,7 @@ export const SearchFormFullHeigth = styled.div`
     display: ${(props) => props.isVisible ? 'block':'none'};
 `
 
-export const SearchFormContainer = styled.div`
+export const SearchFormContainer = styled.form`
     background: #ffffff;
     transition: all ease 1s;
 `
@@ -213,12 +214,12 @@ export const GuestCounterButtons = styled.div`
     gap:15px;
     max-width: 90px;
 `
-export const GuestCounterButton = styled.button`
+export const GuestCounterButton = styled.a`
     border: 1px solid #828282;
-    box-sizing: border-box;
     border-radius: 4px;
     color: #828282;
     cursor: pointer;
+    padding:2px 5px;
 `
 export const EmptyColumn = styled.div`
     flex: 1;

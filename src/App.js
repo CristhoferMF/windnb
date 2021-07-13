@@ -1,12 +1,11 @@
-import Header from "./components/Header";
-import Main from './components/Main'
+import { Route,Switch } from "wouter";
+import Search from "./Pages/Search";
 
 function App() {
   return (
-    <>
-      <Header/>
-      <Main/>
-    </>
+    <Switch>
+      <Route path="/" component={Search}/>
+    </Switch>
   );
 }
 

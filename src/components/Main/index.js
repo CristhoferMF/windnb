@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
+
 import {
     MainContainer,
     MainWrapper,
@@ -8,23 +9,21 @@ import {
     StayCardGrid,
 } from './MainComponents'
 import StayCard from '../StayCard'
-import LOCATIONS_DATA from '../../stays.json'
 
-function Main() {
 
-    const [locations,setLocations] = useState(LOCATIONS_DATA)
-
+function Main({stays,location}) {
+    
     return (
         <MainContainer>
             <MainWrapper>
                 <RowTop>
-                    <StayLocationTitle>Stays in Finland</StayLocationTitle>
+                    <StayLocationTitle>Stays in {location}</StayLocationTitle>
                     <StaysCount>12+ Stays</StaysCount>
                 </RowTop>
                 <StayCardGrid>
-                    {locations.map( ({photo,superHost,type,beds,rating,title}) => {
+                    {stays.map( ({photo,superHost,type,beds,rating,title},index) => {
                         const props = {photo,superHost,type,beds,rating,title} ; 
-                        return <StayCard {...props}/>
+                        return <StayCard {...props} key={title} />
 
                     })}   
                 </StayCardGrid>
