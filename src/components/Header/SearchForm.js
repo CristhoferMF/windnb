@@ -10,9 +10,13 @@ import {
     SearchFormContainer,
     SearchFormWrapper,
     FormRow,
+    SearchMobileRow,
+    SearchMobileLabel,
+    SearchMobileToogle,
     FormRowInputWrapper,
     InputWrapper,
     ButtonSubmitWrapper,
+    ButtonSubmitWrapperMobile,
     ButtonSubmit,
     LocationOptionList,
     LocationOption,
@@ -35,6 +39,8 @@ export default function SearchForm(props){
 
     const refForm = useRef(null); 
     const refInputLocation = useRef(null); 
+    const refFormLocation = useRef(null); 
+    const refFormGuests = useRef(null); 
     
     const handleChangeLocation = (e) => {
         const term = e.target.value
@@ -85,9 +91,20 @@ export default function SearchForm(props){
         
     }
 
+    const handleFocusLocation = (e) => {
+        handleFocusInput(e)
+        refFormGuests.current.style.display ="none"
+        refFormLocation.current.style.display ="flex"
+    }
+
+    const handleFocusGuests = (e) => {
+        handleFocusInput(e)
+        refFormGuests.current.style.display ="flex"
+        refFormLocation.current.style.display ="none"
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
-        const URL = `/s/?location=${location}&adults=${guests.adults}&children=${guests.children}`
+        const URL = `/${location}/g/${guests.adults}/${guests.children}`
         setLocationWouter(URL)
         props.setIsFormVisible(false)
     }
@@ -124,14 +141,18 @@ export default function SearchForm(props){
         <SearchFormFullHeigth isVisible={props.isFormVisible}>
             <SearchFormContainer ref={refForm} onSubmit={handleSubmit}>
                 <SearchFormWrapper>
+                        <SearchMobileRow>
+                            <SearchMobileLabel>Edit your search:</SearchMobileLabel>
+                            <SearchMobileToogle onClick={() => props.setIsFormVisible(false)}>X</SearchMobileToogle>
+                        </SearchMobileRow>
                         <FormRowInputWrapper>
                             <InputWrapper active={true}>
-                                <label>Location</label>
-                                <input onFocus={handleFocusInput}  ref={refInputLocation} value={location} onChange={handleChangeLocation} placeholder="Add Location" />
+                                <label htmlFor="location">Location</label>
+                                <input id="location" onFocus={handleFocusLocation}  ref={refInputLocation} value={location} onChange={handleChangeLocation} placeholder="Add Location" />
                             </InputWrapper>
                             <InputWrapper>
-                                <label>Guest</label>
-                                <input onFocus={handleFocusInput} value={guests.children + guests.adults} readOnly placeholder="Add guests" min="0" type="number"/>
+                                <label htmlFor="guests">Guest</label>
+                                <input id="guests" onFocus={handleFocusGuests} value={guests.children + guests.adults} readOnly placeholder="Add guests" min="0" type="number"/>
                             </InputWrapper>
                             <InputWrapper>
                                 <ButtonSubmitWrapper>
@@ -140,7 +161,7 @@ export default function SearchForm(props){
                             </InputWrapper>
                         </FormRowInputWrapper>
                         <FormRow minHeight="330px">
-                            <LocationOptionList>
+                            <LocationOptionList ref={refFormLocation}>
                                 {
                                     suggestedLocations.map( (suggestedLocation,index) => (
                                         <LocationOption key={index} onClick={handleClickLocationSuggested.bind(this,suggestedLocation)}>
@@ -150,7 +171,7 @@ export default function SearchForm(props){
                                     ))
                                 }
                             </LocationOptionList>
-                            <GuestCounterWrapper>
+                            <GuestCounterWrapper ref={refFormGuests}>
                                 <GuestCounter>
                                     <GuestCounterLabel>
                                         <b>Adults</b>
@@ -174,8 +195,10 @@ export default function SearchForm(props){
                                     </GuestCounterButtons>
                                 </GuestCounter>
                             </GuestCounterWrapper>
-                            <EmptyColumn/>
                         </FormRow>
+                        <ButtonSubmitWrapperMobile>
+                            <ButtonSubmit type="submit"><SearchIcon/>Search</ButtonSubmit>
+                        </ButtonSubmitWrapperMobile>
                 </SearchFormWrapper>
             </SearchFormContainer>
         </SearchFormFullHeigth>

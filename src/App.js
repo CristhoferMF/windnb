@@ -1,11 +1,20 @@
-import { Route,Switch } from "wouter";
+import { useEffect } from "react";
+import { Route,Router,useLocation } from "wouter";
 import Search from "./Pages/Search";
 
 function App() {
+  const [location,setLocation] = useLocation();
+
+  useEffect(() => {
+    if(location === "/"){
+      setLocation('/Finland/g/0/0')
+    }
+  }, [])
+
   return (
-    <Switch>
-      <Route path="/" component={Search}/>
-    </Switch>
+    <Router>
+      <Route path="/:location/g/:adults/:children" component={Search}/>
+    </Router>
   );
 }
 

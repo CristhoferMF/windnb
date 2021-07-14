@@ -1,13 +1,14 @@
-import React from 'react'
 import Header from '../../components/Header'
 import Main from '../../components/Main'
-import STAYS from '../../stays.json'
 
-function Search() {
+function Search({params}) {
+
+    const location = decodeURI(params.location)
+    const guests = {adults: parseInt(params.adults), children : parseInt(params.children) }
     return (
         <>
-            <Header location="Helsinski, Finland" guests={ {adults: 0, children:0 }}/>
-            <Main stays={STAYS} location="Helsinski"/>
+            <Header location={location} guests={guests}/>
+            <Main location={location} guests={guests}/>
         </>
     )
 }

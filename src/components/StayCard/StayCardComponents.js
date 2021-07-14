@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import StarIcon from '@material-ui/icons/Star';
-import {colors} from '../../config/theme'
+import {colors, screens} from '../../config/theme'
 
 export const StayCardContainer = styled.div `
-    
+
 `
 
 export const ImageStayCard = styled.img `

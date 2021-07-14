@@ -3,6 +3,11 @@ import {colors, screens} from '../../config/theme'
 
 export const MainContainer = styled.main`
     margin-bottom:64px;
+    padding: 0px 12px;
+    
+    @media (min-width: ${screens.lg}){
+        padding: 0px;;
+    }
 `
 export const MainWrapper = styled.div`
     max-width: ${screens.lg};
@@ -18,8 +23,13 @@ export const RowTop = styled.div`
 
 export const StayLocationTitle = styled.h2`
     font-weight: 700;
-    font-size: 24px;
+    font-size: 18px;
     margin: 0;
+    max-width: 70%;
+
+    @media (min-width: ${screens.lg}){
+        font-size: 24px;
+    }
 `
 
 export const StaysCount = styled.div`
@@ -29,9 +39,16 @@ export const StaysCount = styled.div`
 
 export const StayCardGrid = styled.div`
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr;
     grid-row-gap: 50px;
     grid-column-gap: 32px;
+
+    @media (min-width: ${screens.md}){
+        grid-template-columns: 1fr 1fr;
+    }
+    @media (min-width: ${screens.lg}){
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 `
 
 export const StayCard = styled.div`
